@@ -1,15 +1,14 @@
 package com.javarush.bakhtin;
 
-import com.javarush.bakhtin.console.Console;
-
-
-public class ExceptionCatcher {
+public class Runner {
     public static void main(String[] args) {
+        Console console = new Console();
         try {
-            new Console().run();
-        } catch (RuntimeException e){
+            console.run();
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             System.out.println();
+            console.run();
         }
     }
 }

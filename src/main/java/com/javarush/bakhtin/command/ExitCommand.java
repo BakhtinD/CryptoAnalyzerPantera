@@ -1,8 +1,8 @@
 package com.javarush.bakhtin.command;
 
 public class ExitCommand implements MenuCommand{
-    @Override
-    public void execute(int key) {
+    public void execute() {
         System.out.print("Выход из программы...");
+        System.exit(0);
     }
 }
