@@ -11,9 +11,10 @@ public class EncoderCommand implements MenuCommand {
     Path defaultToPath = Paths.get("text", "encrypted.txt");
 
     public void execute() {
-        int key = CaesarParamReader.getKeyFromUser();
-        Path from = CaesarParamReader.getFromPathFromUser(defaultFromPath);
-        Path to = CaesarParamReader.getToPathFromUser(defaultToPath);
+        var reader = CaesarParamReader.getInstance();
+        int key = reader.getKeyFromUser();
+        Path from = reader.getFromPathFromUser(defaultFromPath);
+        Path to = reader.getToPathFromUser(defaultToPath);
         new Caesar().encode(key, from, to);
     }
 

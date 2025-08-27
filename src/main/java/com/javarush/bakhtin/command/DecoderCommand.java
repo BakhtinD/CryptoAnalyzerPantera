@@ -11,9 +11,10 @@ public class DecoderCommand implements MenuCommand {
     Path defaultToPath = Paths.get("text", "decrypted.txt");
 
     public void execute() {
-        int key = CaesarParamReader.getKeyFromUser();
-        Path from = CaesarParamReader.getFromPathFromUser(defaultFromPath);
-        Path to = CaesarParamReader.getToPathFromUser(defaultToPath);
+        var reader = CaesarParamReader.getInstance();
+        int key = reader.getKeyFromUser();
+        Path from = reader.getFromPathFromUser(defaultFromPath);
+        Path to = reader.getToPathFromUser(defaultToPath);
         new Caesar().decode(key, from, to);
     }
 }

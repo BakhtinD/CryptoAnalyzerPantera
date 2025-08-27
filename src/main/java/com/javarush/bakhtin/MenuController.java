@@ -1,6 +1,9 @@
 package com.javarush.bakhtin;
 
-import com.javarush.bakhtin.command.*;
+import com.javarush.bakhtin.command.DecoderCommand;
+import com.javarush.bakhtin.command.EncoderCommand;
+import com.javarush.bakhtin.command.ExitCommand;
+import com.javarush.bakhtin.command.MenuCommand;
 
 import java.util.HashMap;
 
@@ -8,7 +11,6 @@ public class MenuController {
 
     private static final String menuMessage = "Введите цифру, соответствующую команде:";
     private static final HashMap<Integer, MenuCommand> menuItemMap = new HashMap<>(3);
-
 
     public MenuController() {
         DecoderCommand decoderCommand = new DecoderCommand();

@@ -12,7 +12,7 @@ public class Console {
         while (true) {
             menuController.printCommands();
             try {
-                int answer = consoleInput.nextInt();
+                int answer = Integer.parseInt(consoleInput.nextLine());
                 if (answer < 1 || answer > 3) throw new RuntimeException("Error: incorrect answer");
                 menuController.executeCommand(answer);
             } catch (InputMismatchException e) {
