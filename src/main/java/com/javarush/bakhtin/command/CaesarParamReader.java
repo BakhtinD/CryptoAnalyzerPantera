@@ -31,7 +31,7 @@ public class CaesarParamReader {
         return defaultPath;
     }
 
-    public int getKeyFromUser() {
+    protected int getKeyFromUser() {
         System.out.print(keyInputMessage);
 
         try {
@@ -45,22 +45,22 @@ public class CaesarParamReader {
         }
     }
 
-    public Path getFromPathFromUser(Path defaultFrom) {
+    protected Path getFromPathFromUser(Path defaultFrom) {
         System.out.println(fromPathInputMessage + defaultFrom.getFileName());
         return getPath(defaultFrom);
     }
 
-    public Path getDictFromUser() {
+    protected Path getDictFromUser() {
         System.out.println(dictPathInputMessage + defaultDictPath.getFileName());
         return getPath(defaultDictPath);
     }
 
-    public Path getEncodedFromUser() {
+    protected Path getEncodedFromUser() {
         System.out.println(encodedPathInputMessage + defaultEncodedPath.getFileName());
         return getPath(defaultEncodedPath);
     }
 
-    public Path getDecodedFromUser() {
+    protected Path getDecodedFromUser() {
         System.out.println(decodedPathInputMessage + defaultDecodedPath.getFileName());
         return getPath(defaultDecodedPath);
     }

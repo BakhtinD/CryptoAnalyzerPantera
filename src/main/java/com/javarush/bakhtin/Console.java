@@ -8,7 +8,7 @@ public class Console {
     private final MenuController menuController = new MenuController();
     public static final Scanner consoleInput = new Scanner(System.in);
 
-    public void run() {
+    protected void run() {
         while (true) {
             menuController.printCommands();
             try {

@@ -9,7 +9,7 @@ public class MenuController {
     private static final String menuMessage = "Введите цифру, соответствующую команде:";
     private static final HashMap<Integer, MenuCommand> menuItemMap = new HashMap<>(3);
 
-    public MenuController() {
+    protected MenuController() {
         DecoderCommand decoderCommand = new DecoderCommand();
         EncoderCommand encoderCommand = new EncoderCommand();
         BruteForce bruteForce = new BruteForce();
@@ -20,11 +20,11 @@ public class MenuController {
         menuItemMap.put(4, exitCommand);
     }
 
-    public void executeCommand(int answer) {
+    protected void executeCommand(int answer) {
         menuItemMap.get(answer).execute();
     }
 
-    public void printCommands() {
+    protected void printCommands() {
         System.out.println(menuMessage);
         for (var menuItem : MenuController.menuItemMap.entrySet()) {
             System.out.print(menuItem.getValue().getClass().getSimpleName());

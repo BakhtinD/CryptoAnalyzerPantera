@@ -29,7 +29,7 @@ public class Caesar {
         }
     }
 
-    protected char encodeChar(int key, int inputNum) {
+    private char encodeChar(int key, int inputNum) {
         int resultNum = (inputNum - FIRST_UNICODE_LETTER + key % NUM_OF_UNICODE_LETTERS + NUM_OF_UNICODE_LETTERS) % NUM_OF_UNICODE_LETTERS + FIRST_UNICODE_LETTER;
         return (char) resultNum;
     }

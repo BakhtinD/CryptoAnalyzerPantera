@@ -9,8 +9,8 @@ import java.nio.file.Path;
 
 public class FileSystem {
 
-    Path fromPath;
-    Path toPath;
+    private Path fromPath;
+    private Path toPath;
 
     public FileSystem(Path fromPath, Path toPath) {
         this.fromPath = fromPath;

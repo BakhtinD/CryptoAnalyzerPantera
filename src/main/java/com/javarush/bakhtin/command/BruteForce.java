@@ -13,13 +13,13 @@ public class BruteForce implements MenuCommand {
 
     public static final Pattern PATTERN = Pattern.compile("[а-я]{4,20}");
 
-    Set<String> wordSet = new HashSet<>();
-    Set<String> encodedWordSet = new HashSet<>();
+    private Set<String> wordSet = new HashSet<>();
+    private Set<String> encodedWordSet = new HashSet<>();
 
-    final CaesarParamReader caesarParamReader = new CaesarParamReader();
-    final Caesar caesar = new Caesar();
+    private final CaesarParamReader caesarParamReader = new CaesarParamReader();
+    private final Caesar caesar = new Caesar();
 
-    public void makeAWordList() {
+    private void makeAWordList() {
         try {
             String dict = Files.readString(caesarParamReader.getDictFromUser());
             Matcher matcher = PATTERN.matcher(dict);
