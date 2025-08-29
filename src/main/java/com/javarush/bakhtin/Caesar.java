@@ -19,19 +19,20 @@ public class Caesar {
         FileSystem fileSystem = new FileSystem(from, to);
         try (FileReader reader = fileSystem.reader(); FileWriter writer = fileSystem.writer()) {
             while (reader.ready()) {
-                int inputNum = reader.read();
-                char resultChar = encodeChar(key, inputNum);
+                int inputUnicodeCode = reader.read();
+                char resultChar = encodeChar(key, inputUnicodeCode);
                 writer.write(resultChar);
             }
-            System.out.println("Выполнение завершено!");
         } catch (IOException e) {
+            // TODO выбрасывай IOException
             throw new RuntimeException(e);
         }
     }
 
-    protected char encodeChar(int key, int inputNum) {
-        int resultNum = (inputNum - FIRST_UNICODE_LETTER + key % NUM_OF_UNICODE_LETTERS + NUM_OF_UNICODE_LETTERS) % NUM_OF_UNICODE_LETTERS + FIRST_UNICODE_LETTER;
-        return (char) resultNum;
+    protected char encodeChar(int key, int unicodeCode) {
+        // TODO коментарий что это делает и как работает
+        return (char) ((unicodeCode - FIRST_UNICODE_LETTER + key % NUM_OF_UNICODE_LETTERS + NUM_OF_UNICODE_LETTERS)
+                % NUM_OF_UNICODE_LETTERS + FIRST_UNICODE_LETTER);
     }
 
 }

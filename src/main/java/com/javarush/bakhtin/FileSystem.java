@@ -7,8 +7,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+// TODO отдельно FileReader  и FileWriter
 public class FileSystem {
 
+    // TODO private!!
     Path fromPath;
     Path toPath;
 
@@ -19,6 +21,7 @@ public class FileSystem {
 
     public FileReader reader() {
         try {
+            // TODO зачем нам пустой файл - дожна быть ошибка и все
             if (!Files.exists(fromPath)) {
                 Files.createFile(fromPath);
             }
@@ -32,6 +35,7 @@ public class FileSystem {
 
     public FileWriter writer() {
         try {
+            // TODO надо просто ВСЕГДА перезаписывать файл
             if (!Files.exists(toPath)) {
                 Files.createFile(toPath);
             }
