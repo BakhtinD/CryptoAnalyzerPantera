@@ -9,8 +9,8 @@ public class DecoderCommand implements MenuCommand {
     public void execute() {
         var reader = CaesarParamReader.getInstance();
         int key = reader.getKeyFromUser();
-        Path from = reader.getFromPathFromUser(Constants.defaultEncodedPath);
-        Path to = reader.getToPathFromUser(Constants.defaultDecodedPath);
+        Path from = reader.getEncodedFromUser();
+        Path to = reader.getDecodedFromUser();
         new Caesar().decode(key, from, to);
     }
 

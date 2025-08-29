@@ -3,15 +3,19 @@ package com.javarush.bakhtin.command;
 import com.javarush.bakhtin.Console;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class CaesarParamReader {
 
     private static final String keyInputMessage = "Введите ключ шифрования, по умолчанию - 1:";
-    private static final String fromPathInputMessage = "Введите путь, откуда вы хотите считать данные или нажмите enter, чтобы использовать путь по умолчанию";
-    private static final String toPathInputMessage = "Введите путь, куда вы хотите записать готовые данные или нажмите enter, чтобы использовать путь по умолчанию";
-    private static final String dictPathInputMessage = "Введите путь к словарю или нажмите enter, чтобы выбрать dict.txt";
-    private static final String encodedPathInputMessage = "Введите путь к файлу или нажмите enter, чтобы выбрать encrypted.txt";
-    private static final String decodedPathInputMessage = "Введите путь к файлу или нажмите enter, чтобы выбрать decrypted.txt";
+    private static final String fromPathInputMessage = "Введите путь, откуда вы хотите считать данные или нажмите enter, чтобы выбрать ";
+    private static final String dictPathInputMessage = "Введите путь к словарю или нажмите enter, чтобы выбрать ";
+    private static final String encodedPathInputMessage = "Введите путь к зашифрованному файлу или нажмите enter, чтобы выбрать ";
+    private static final String decodedPathInputMessage = "Введите путь к расшифрованному файлу или нажмите enter, чтобы выбрать ";
+    private static final Path defaultDictPath = Path.of("text", "dict.txt");
+    private static final Path defaultEncodedPath = Path.of("text", "encrypted.txt");
+    private static final Path defaultDecodedPath = Paths.get("text", "decrypted.txt");
+
     private static int key = 1;
     private static final CaesarParamReader instance = new CaesarParamReader();
 
@@ -19,7 +23,7 @@ public class CaesarParamReader {
         return instance;
     }
 
-    private Path checkForMessage(Path defaultPath) {
+    private Path getPath(Path defaultPath) {
         String consoleString = Console.consoleInput.nextLine();
         if (!consoleString.isEmpty()) {
             defaultPath = Path.of(consoleString);
@@ -42,28 +46,23 @@ public class CaesarParamReader {
     }
 
     public Path getFromPathFromUser(Path defaultFrom) {
-        System.out.println(fromPathInputMessage);
-        return checkForMessage(defaultFrom);
+        System.out.println(fromPathInputMessage + defaultFrom.getFileName());
+        return getPath(defaultFrom);
     }
 
-    public Path getToPathFromUser(Path defaultTo) {
-        System.out.println(toPathInputMessage);
-        return checkForMessage(defaultTo);
+    public Path getDictFromUser() {
+        System.out.println(dictPathInputMessage + defaultDictPath.getFileName());
+        return getPath(defaultDictPath);
     }
 
-    public Path getToDictFromUser(Path defaultDict) {
-        System.out.println(dictPathInputMessage);
-        return checkForMessage(defaultDict);
+    public Path getEncodedFromUser() {
+        System.out.println(encodedPathInputMessage + defaultEncodedPath.getFileName());
+        return getPath(defaultEncodedPath);
     }
 
-    public Path getEncodedFromUser(Path defaultEncodedPath) {
-        System.out.println(encodedPathInputMessage);
-        return checkForMessage(defaultEncodedPath);
-    }
-
-    public Path getDecodedFromUser(Path defaultDecodedPath) {
-        System.out.println(decodedPathInputMessage);
-        return checkForMessage(defaultDecodedPath);
+    public Path getDecodedFromUser() {
+        System.out.println(decodedPathInputMessage + defaultDecodedPath.getFileName());
+        return getPath(defaultDecodedPath);
     }
 
 }
