@@ -16,7 +16,9 @@ public class Console {
                 if (answer < 1 || answer > 3) throw new RuntimeException("Error: incorrect answer");
                 menuController.executeCommand(answer);
             } catch (InputMismatchException e) {
-                throw new RuntimeException("Error: not a number");
+                System.err.println("Error: not a number");
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
             }
         }
     }

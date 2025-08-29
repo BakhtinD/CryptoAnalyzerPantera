@@ -3,18 +3,15 @@ package com.javarush.bakhtin.command;
 import com.javarush.bakhtin.Caesar;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class DecoderCommand implements MenuCommand {
-
-    Path defaultFromPath = Paths.get("text", "encrypted.txt");
-    Path defaultToPath = Paths.get("text", "decrypted.txt");
 
     public void execute() {
         var reader = CaesarParamReader.getInstance();
         int key = reader.getKeyFromUser();
-        Path from = reader.getFromPathFromUser(defaultFromPath);
-        Path to = reader.getToPathFromUser(defaultToPath);
+        Path from = reader.getFromPathFromUser(Constants.defaultEncodedPath);
+        Path to = reader.getToPathFromUser(Constants.defaultDecodedPath);
         new Caesar().decode(key, from, to);
     }
+
 }

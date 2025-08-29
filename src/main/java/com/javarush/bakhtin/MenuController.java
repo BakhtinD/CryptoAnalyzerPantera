@@ -1,9 +1,6 @@
 package com.javarush.bakhtin;
 
-import com.javarush.bakhtin.command.DecoderCommand;
-import com.javarush.bakhtin.command.EncoderCommand;
-import com.javarush.bakhtin.command.ExitCommand;
-import com.javarush.bakhtin.command.MenuCommand;
+import com.javarush.bakhtin.command.*;
 
 import java.util.HashMap;
 
@@ -15,10 +12,12 @@ public class MenuController {
     public MenuController() {
         DecoderCommand decoderCommand = new DecoderCommand();
         EncoderCommand encoderCommand = new EncoderCommand();
+        BruteForce bruteForce = new BruteForce();
         ExitCommand exitCommand = new ExitCommand();
         menuItemMap.put(1, encoderCommand);
         menuItemMap.put(2, decoderCommand);
-        menuItemMap.put(3, exitCommand);
+        menuItemMap.put(3, bruteForce);
+        menuItemMap.put(4, exitCommand);
     }
 
     public void executeCommand(int answer) {
