@@ -26,6 +26,7 @@ public class CaesarParamReader {
     private Path getPath(Path defaultPath) {
         String consoleString = Console.consoleInput.nextLine();
         if (!consoleString.isEmpty()) {
+            // TODO defaultPath как входной параметр переопределять
             defaultPath = Path.of(consoleString);
         }
         return defaultPath;
@@ -41,6 +42,7 @@ public class CaesarParamReader {
             }
             return key;
         } catch (NumberFormatException e) {
+            // TODO Интерфейс польз должен быть на одном языке
             throw new RuntimeException("Error: not a number");
         }
     }

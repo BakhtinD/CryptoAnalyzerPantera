@@ -11,9 +11,12 @@ public class EncoderCommand implements MenuCommand {
 
     public void execute() {
         var reader = CaesarParamReader.getInstance();
+
         int key = reader.getKeyFromUser();
+        // TODO сделать как reader.getEncodedFromUser();
         Path from = reader.getFromPathFromUser(defaultTextPath);
         Path to = reader.getEncodedFromUser();
+
         new Caesar().encode(key, from, to);
     }
 
