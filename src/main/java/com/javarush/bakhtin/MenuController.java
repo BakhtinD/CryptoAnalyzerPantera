@@ -2,38 +2,42 @@ package com.javarush.bakhtin;
 
 import com.javarush.bakhtin.command.*;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class MenuController {
+
+    private static final Scanner consoleInput = new Scanner(System.in);
 
     private static final String menuMessage = "Введите цифру, соответствующую команде:";
     private static final HashMap<Integer, MenuCommand> menuItemMap = new HashMap<>(3);
 
-    public MenuController() {
-        // TODO переменные не нужны
-        DecoderCommand decoderCommand = new DecoderCommand();
-        EncoderCommand encoderCommand = new EncoderCommand();
-        BruteForce bruteForce = new BruteForce();
-        ExitCommand exitCommand = new ExitCommand();
-        menuItemMap.put(1, encoderCommand);
-        menuItemMap.put(2, decoderCommand);
-        menuItemMap.put(3, bruteForce);
-        menuItemMap.put(4, exitCommand);
+    protected MenuController() {
+        menuItemMap.put(1, new EncoderCommand());
+        menuItemMap.put(2, new DecoderCommand());
+        menuItemMap.put(3, new BruteForce());
+        menuItemMap.put(4, new ExitCommand());
     }
 
-
-    public void executeCommand(int answer) {
+    protected void executeCommand(int answer) throws IOException {
         menuItemMap.get(answer).execute();
     }
 
-    public void printCommands() {
+    protected void printCommands() {
         System.out.println(menuMessage);
         for (var menuItem : MenuController.menuItemMap.entrySet()) {
-            // TODO сделать красиво вывод имени команды getCommandName
-            System.out.print(menuItem.getValue().getClass().getSimpleName());
+            System.out.print(menuItem.getValue().getCommandName());
             System.out.print(" - ");
             System.out.println(menuItem.getKey());
         }
     }
 
+    public int getUserCommand() {
+        int answer = Integer.parseInt(consoleInput.nextLine());
+        if (answer < 1 || answer > 4) {
+            throw new RuntimeException("Error: incorrect answer");
+        }
+        return answer;
+    }
 }

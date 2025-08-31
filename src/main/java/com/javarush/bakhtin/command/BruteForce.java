@@ -11,49 +11,39 @@ import java.util.regex.Pattern;
 
 public class BruteForce implements MenuCommand {
 
-    // TODO меньше public - private
-    // TODO что за pattern - WORD_PATTERN
-    public static final Pattern PATTERN = Pattern.compile("[а-я]{4,20}");
+    private static final String commandName = "Брутфорс";
 
-    // TODO меньше public - private
-    Set<String> wordSet = new HashSet<>();
-    Set<String> encodedWordSet = new HashSet<>();
+    public String getCommandName() {
+        return commandName;
+    }
 
-    // TODO меньше public - private
-    final CaesarParamReader caesarParamReader = new CaesarParamReader();
-    final Caesar caesar = new Caesar();
+    private static final Pattern WORD_PATTERN = Pattern.compile("[а-я]{4,20}");
 
-    // TODO rename сделать список слов из словаря
-    public void makeAWordList() {
-        try {
-            String dict = Files.readString(caesarParamReader.getDictFromUser());
-            Matcher matcher = PATTERN.matcher(dict);
-            while (matcher.find()) {
-                // TODO use matcher.group()
-                wordSet.add(dict.substring(matcher.start(), matcher.end()));
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    private Set<String> wordSet = new HashSet<>();
+    private Set<String> encodedWordSet = new HashSet<>();
+
+    private final CaesarParamReader caesarParamReader = new CaesarParamReader();
+    private final Caesar caesar = new Caesar();
+
+    public void makeAWordListFromDictionary() throws IOException {
+        String dict = Files.readString(caesarParamReader.getDictFromUser());
+        Matcher matcher = WORD_PATTERN.matcher(dict);
+        while (matcher.find()) {
+            wordSet.add(matcher.group());
         }
     }
 
-    private void makeAWordListFromDecodedFile(Path path) {
-        try {
-            encodedWordSet.clear();
-            // TODO readString
-            String text = new String(Files.readAllBytes(path));
-            Matcher matcher = PATTERN.matcher(text);
-            while (matcher.find()) {
-                // TODO use matcher.group()
-                encodedWordSet.add(text.substring(matcher.start(), matcher.end()));
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    private void makeAWordListFromDecodedFile(Path path) throws IOException {
+        encodedWordSet.clear();
+        String text = Files.readString(path);
+        Matcher matcher = WORD_PATTERN.matcher(text);
+        while (matcher.find()) {
+            encodedWordSet.add(matcher.group());
         }
     }
 
-    public void execute() {
-        makeAWordList();
+    public void execute() throws IOException {
+        makeAWordListFromDictionary();
         int maxNumOfMatches = 0;
         int shiftOfMaxNumOfMatches = 0;
         Path encodedPath = caesarParamReader.getEncodedFromUser();

@@ -1,5 +1,7 @@
 package com.javarush.bakhtin;
 
+import com.javarush.bakhtin.fileOperations.FileSystem;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,11 +13,11 @@ public class Caesar {
     private final int LAST_UNICODE_LETTER = 1104;
     private final int NUM_OF_UNICODE_LETTERS = LAST_UNICODE_LETTER - FIRST_UNICODE_LETTER;
 
-    public void decode(int key, Path from, Path to) {
+    public void decode(int key, Path from, Path to) throws IOException {
         encode(-key, from, to);
     }
 
-    public void encode(int key, Path from, Path to) {
+    public void encode(int key, Path from, Path to) throws IOException {
         FileSystem fileSystem = new FileSystem(from, to);
         try (FileReader reader = fileSystem.reader(); FileWriter writer = fileSystem.writer()) {
             while (reader.ready()) {
@@ -23,16 +25,12 @@ public class Caesar {
                 char resultChar = encodeChar(key, inputUnicodeCode);
                 writer.write(resultChar);
             }
-        } catch (IOException e) {
-            // TODO выбрасывай IOException
-            throw new RuntimeException(e);
         }
     }
 
     protected char encodeChar(int key, int unicodeCode) {
-        // TODO коментарий что это делает и как работает
         return (char) ((unicodeCode - FIRST_UNICODE_LETTER + key % NUM_OF_UNICODE_LETTERS + NUM_OF_UNICODE_LETTERS)
-                % NUM_OF_UNICODE_LETTERS + FIRST_UNICODE_LETTER);
+                % NUM_OF_UNICODE_LETTERS + FIRST_UNICODE_LETTER); // Общая формула для циклического сдвига
     }
 
 }

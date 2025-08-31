@@ -2,11 +2,18 @@ package com.javarush.bakhtin.command;
 
 import com.javarush.bakhtin.Caesar;
 
+import java.io.IOException;
 import java.nio.file.Path;
 
 public class DecoderCommand implements MenuCommand {
 
-    public void execute() {
+    private static final String commandName = "Расшифровать";
+
+    public String getCommandName() {
+        return commandName;
+    }
+
+    public void execute() throws IOException {
         var reader = CaesarParamReader.getInstance();
         int key = reader.getKeyFromUser();
         Path from = reader.getEncodedFromUser();

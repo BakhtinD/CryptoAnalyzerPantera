@@ -1,9 +1,8 @@
 package com.javarush.bakhtin.command;
 
-import com.javarush.bakhtin.Console;
-
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class CaesarParamReader {
 
@@ -16,6 +15,8 @@ public class CaesarParamReader {
     private static final Path defaultEncodedPath = Path.of("text", "encrypted.txt");
     private static final Path defaultDecodedPath = Paths.get("text", "decrypted.txt");
 
+    private final Scanner consoleScanner = new Scanner(System.in);
+
     private static int key = 1;
     private static final CaesarParamReader instance = new CaesarParamReader();
 
@@ -24,19 +25,17 @@ public class CaesarParamReader {
     }
 
     private Path getPath(Path defaultPath) {
-        String consoleString = Console.consoleInput.nextLine();
+        String consoleString = consoleScanner.nextLine();
         if (!consoleString.isEmpty()) {
-            // TODO defaultPath как входной параметр переопределять
-            defaultPath = Path.of(consoleString);
+            return Path.of(consoleString);
         }
         return defaultPath;
     }
 
     protected int getKeyFromUser() {
         System.out.print(keyInputMessage);
-
         try {
-            int inputKey = Integer.parseInt(Console.consoleInput.nextLine());
+            int inputKey = Integer.parseInt(consoleScanner.nextLine());
             if (inputKey != 0) {
                 key = inputKey;
             }
