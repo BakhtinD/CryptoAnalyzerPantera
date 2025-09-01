@@ -1,7 +1,5 @@
 package com.javarush.bakhtin;
 
-import com.javarush.bakhtin.fileOperations.FileSystem;
-
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,8 +16,8 @@ public class Caesar {
     }
 
     public void encode(int key, Path from, Path to) throws IOException {
-        FileSystem fileSystem = new FileSystem(from, to);
-        try (FileReader reader = fileSystem.reader(); FileWriter writer = fileSystem.writer()) {
+        try (FileReader reader = FileUtil.toFileReader(from);
+             FileWriter writer = FileUtil.toFileWriter(to)) {
             while (reader.ready()) {
                 int inputUnicodeCode = reader.read();
                 char resultChar = encodeChar(key, inputUnicodeCode);

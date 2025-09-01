@@ -7,10 +7,10 @@ import java.nio.file.Path;
 
 public class DecoderCommand implements MenuCommand {
 
-    private static final String commandName = "Расшифровать";
+    private static final String COMMAND_NAME = "Расшифровать";
 
     public String getCommandName() {
-        return commandName;
+        return COMMAND_NAME;
     }
 
     public void execute() throws IOException {

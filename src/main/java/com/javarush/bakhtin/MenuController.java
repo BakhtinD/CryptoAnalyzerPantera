@@ -10,7 +10,7 @@ public class MenuController {
 
     private static final Scanner consoleInput = new Scanner(System.in);
 
-    private static final String menuMessage = "Введите цифру, соответствующую команде:";
+    private static final String MENU_MESSAGE = "Введите цифру, соответствующую команде:";
     private static final HashMap<Integer, MenuCommand> menuItemMap = new HashMap<>(3);
 
     protected MenuController() {
@@ -25,7 +25,7 @@ public class MenuController {
     }
 
     protected void printCommands() {
-        System.out.println(menuMessage);
+        System.out.println(MENU_MESSAGE);
         for (var menuItem : MenuController.menuItemMap.entrySet()) {
             System.out.print(menuItem.getValue().getCommandName());
             System.out.print(" - ");
@@ -36,7 +36,7 @@ public class MenuController {
     public int getUserCommand() {
         int answer = Integer.parseInt(consoleInput.nextLine());
         if (answer < 1 || answer > 4) {
-            throw new RuntimeException("Error: incorrect answer");
+            throw new RuntimeException("Ошибка, введите число от 1 до 4");
         }
         return answer;
     }

@@ -11,10 +11,10 @@ import java.util.regex.Pattern;
 
 public class BruteForce implements MenuCommand {
 
-    private static final String commandName = "Брутфорс";
+    private static final String COMMAND_NAME = "Брутфорс";
 
     public String getCommandName() {
-        return commandName;
+        return COMMAND_NAME;
     }
 
     private static final Pattern WORD_PATTERN = Pattern.compile("[а-я]{4,20}");
@@ -65,7 +65,7 @@ public class BruteForce implements MenuCommand {
                 shiftOfMaxNumOfMatches = shift;
             }
         }
-        System.out.println(shiftOfMaxNumOfMatches);
+        System.out.println("Правильный ключ: " + shiftOfMaxNumOfMatches);
         caesar.decode(shiftOfMaxNumOfMatches, encodedPath, decodedPath);
         System.out.println("Брутфорс завершен");
     }

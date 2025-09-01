@@ -2,10 +2,10 @@ package com.javarush.bakhtin.command;
 
 public class ExitCommand implements MenuCommand {
 
-    private static final String commandName = "Выход из программы";
+    private static final String COMMAND_NAME = "Выход из программы";
 
     public String getCommandName() {
-        return commandName;
+        return COMMAND_NAME;
     }
 
     public void execute() {
