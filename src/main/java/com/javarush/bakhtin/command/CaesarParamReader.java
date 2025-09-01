@@ -41,7 +41,7 @@ public class CaesarParamReader {
             }
             return key;
         } catch (NumberFormatException e) {
-            // TODO Интерфейс польз должен быть на одном языке
+            // FIXME ?? Интерфейс польз должен быть на одном языке
             throw new RuntimeException("Error: not a number");
         }
     }

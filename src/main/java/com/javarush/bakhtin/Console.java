@@ -2,7 +2,7 @@ package com.javarush.bakhtin;
 
 import java.util.InputMismatchException;
 
-// TODO вообще не нужный класс
+// FIXME ?? вообще не нужный класс
 public class Console {
 
     private final MenuController menuController = new MenuController();
